@@ -1,4 +1,5 @@
 import vk
+import getpass
 import time
 
 
@@ -11,7 +12,7 @@ def get_user_login():
 
 
 def get_user_password():
-    user_password = input('Введите пароль пользователя VK: ')
+    user_password = getpass.getpass('Введите пароль пользователя VK: ')
     return user_password
 
 
