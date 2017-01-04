@@ -1,6 +1,5 @@
 import vk
 import getpass
-import time
 
 
 APP_ID = 5798463
@@ -25,18 +24,14 @@ def get_online_friends(login, password):
     )
     api = vk.API(session)
     friends_online_id = api.friends.getOnline()
-    friends_online_name = []
-    for friend in friends_online_id:
-        get_user = api.users.get(user_ids=friend)
-        get_user = get_user[0]
-        online_name = get_user['first_name'] + ' ' + get_user['last_name']
-        friends_online_name.append(online_name)
-        time.sleep(0.33)
-    return friends_online_name
+    return api.users.get(user_ids=friends_online_id)
 
 
 def output_friends_to_console(friends_online):
-    print('Друзья online: ', friends_online)
+    print('Список друзей онлайн:')
+    for count, friend in enumerate(friends_online, start=1):
+            print('%s. %s %s' % (count, friend['first_name'],
+                  friend['last_name']))
 
 if __name__ == '__main__':
     login = get_user_login()
